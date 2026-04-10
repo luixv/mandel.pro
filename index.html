@@ -69,34 +69,15 @@
 
     .menu a:hover { color: var(--ink); }
 
-    .hero {
-      display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: 2rem;
-      padding: 2rem 0 1rem;
-      border-bottom: 1px solid var(--line);
+     align-items: start;
     }
 
     .cover {
       background: linear-gradient(180deg, #d5c8b7 0%, #c3b39d 100%);
-      min-height: 640px;
+      min-height: 420px;
+      aspect-ratio: 4 / 5;
       border: 1px solid var(--line);
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cover::before {
-      content: "";
-      position: absolute;
-      inset: 1rem;
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .cover-label {
+.cover-label {
       position: absolute;
       top: 1rem;
       left: 1rem;
@@ -121,8 +102,8 @@
     .hero-side {
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      min-height: 640px;
+      justify-content: flex-start;
+      min-height: auto;
     }
 
     .kicker {
@@ -138,15 +119,7 @@
     h1 {
       margin: 0;
       font-size: clamp(2.8rem, 6vw, 5.5rem);
-      line-height: 0.94;
-      letter-spacing: -0.05em;
-      font-weight: 700;
-    }
-
-    .lead {
-      font-size: 1.18rem;
-      color: #2a2825;
-      max-width: 34ch;
+      line-height: 0.94x-width: 34ch;
       margin: 1rem 0 0;
     }
 
@@ -176,7 +149,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 0.8rem;
-      margin-top: 1.8rem;
+      margin-top: 1.5rem;
     }
 
     .btn {
@@ -198,14 +171,7 @@
       color: var(--paper);
     }
 
-    .btn.primary:hover {
-      background: #000;
-    }
-
-    .btn.secondary:hover {
-      background: rgba(0,0,0,0.04);
-    }
-
+    .btn.primary:hov
     section {
       padding: 2rem 0;
       border-bottom: 1px solid var(--line);
@@ -305,23 +271,17 @@
       }
 
       .cover {
-        min-height: 430px;
+        min-height: 320px;
+        aspect-ratio: auto;
       }
 
       .meta-grid {
         grid-template-columns: 1fr;
       }
     }
+    }
   </style>
-</head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#inicio">Luis Mandel</a>
-      <nav class="menu">
-        <a href="#sobre-mi">Sobre mí</a>
-        <a href="#libro">Libro</a>
-        <a href="#trayectoria">Trayectoria</a>
+</head>yectoria">Trayectoria</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </div>
@@ -334,13 +294,7 @@
         <div class="cover-title">Luis<br>Mandel</div>
       </div>
 
-      <div class="hero-side">
-        <div>
-          <div class="kicker">Informática y escritura</div>
-          <h1>Una vida entre el software y los relatos</h1>
-          <p class="lead">
-            Doctor en Informática y escritor argentino. Mi recorrido reúne años de desarrollo de software,
-            investigación interdisciplinaria y una práctica sostenida de escritura centrada en la memoria,
+      <div class="hero-sidedisciplinaria y una práctica sostenida de escritura centrada en la memoria,
             la experiencia personal y los cruces entre lo íntimo y lo colectivo.
           </p>
 
