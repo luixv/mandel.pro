@@ -187,14 +187,12 @@ section {
 }
 
 .section-head {
-  display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  gap: 2rem;
-  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
 .section-tag {
-  padding-top: 0.35rem;
   color: var(--muted);
   font-size: 0.75rem;
   letter-spacing: 0.2em;
@@ -205,6 +203,7 @@ section {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 760px;
 }
 
 .section-body h2 {
@@ -282,7 +281,6 @@ section {
 }
 
 @media (max-width: 980px) {
-  .section-head,
   .cols {
     grid-template-columns: 1fr;
   }
@@ -293,9 +291,6 @@ section {
     max-width: none;
   }
 
-  .section-tag {
-    padding-top: 0;
-  }
 }
 
 @media (max-width: 720px) {
