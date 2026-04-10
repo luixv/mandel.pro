@@ -1,10 +1,495 @@
 <!doctype html>
-<html>
-  <head>
-    <title>mandel.pro</title>
-  </head>
-  <body>
-    <h1>Hello 👋</h1>
-    <p>This is my website.</p>
-  </body>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luis Mandel</title>
+  <meta name="description" content="Sitio personal de Luis Mandel: informática, escritura y proyectos." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121a33;
+      --card: rgba(255,255,255,0.08);
+      --text: #eef2ff;
+      --muted: #b8c0e0;
+      --line: rgba(255,255,255,0.14);
+      --accent: #8b5cf6;
+      --accent-2: #22c55e;
+      --shadow: 0 18px 60px rgba(0,0,0,0.35);
+      --max: 1100px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(139,92,246,0.25), transparent 35%),
+        radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 28%),
+        linear-gradient(180deg, #0b1020 0%, #0d1328 55%, #0a1020 100%);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      width: min(calc(100% - 2rem), var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(14px);
+      background: rgba(11,16,32,0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand span { color: #c4b5fd; }
+
+    .menu {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .menu a {
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .menu a:hover { color: white; }
+
+    .hero {
+      padding: 5.5rem 0 4rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: #d8def8;
+      font-size: 0.92rem;
+      margin-bottom: 1rem;
+    }
+
+    .dot {
+      width: 0.65rem;
+      height: 0.65rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 18px rgba(139,92,246,0.7);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p.lead {
+      margin: 1.2rem 0 0;
+      font-size: 1.16rem;
+      line-height: 1.75;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.9rem 1.2rem;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+      font-weight: 600;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.28);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--accent), #6d28d9);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 12px 30px rgba(109,40,217,0.35);
+    }
+
+    .btn.secondary {
+      background: rgba(255,255,255,0.04);
+      color: white;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.05));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 1.6rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -10% -30% auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(139,92,246,0.45), transparent 68%);
+    }
+
+    .mini {
+      color: #d7dbf4;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill-list {
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+
+    .pill {
+      padding: 0.45rem 0.8rem;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      color: #e7eafe;
+      font-size: 0.88rem;
+    }
+
+    section {
+      padding: 1rem 0 4rem;
+    }
+
+    .section-title {
+      font-size: 0.92rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #b6bfdc;
+      margin-bottom: 0.9rem;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1.2rem;
+    }
+
+    .card {
+      grid-column: span 6;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 0.7rem;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .book {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 1.5rem;
+      align-items: stretch;
+      background: linear-gradient(180deg, rgba(139,92,246,0.12), rgba(255,255,255,0.05));
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .book-cover {
+      min-height: 360px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.14), rgba(255,255,255,0.05)),
+        radial-gradient(circle at top right, rgba(34,197,94,0.12), transparent 35%),
+        linear-gradient(135deg, #1c1235, #241542 55%, #10182f);
+      display: grid;
+      place-items: center;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .book-cover .title {
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .book-cover .subtitle {
+      margin-top: 0.8rem;
+      color: #d7dbf4;
+      font-size: 1rem;
+    }
+
+    .book-meta {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 1rem 0 1.2rem;
+    }
+
+    .book-meta span {
+      padding: 0.42rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      color: #e7eafe;
+      font-size: 0.88rem;
+    }
+
+    .quote {
+      margin-top: 1rem;
+      padding: 1rem 1.1rem;
+      border-left: 3px solid #a78bfa;
+      background: rgba(255,255,255,0.04);
+      color: #dde3ff;
+      line-height: 1.75;
+      border-radius: 0 16px 16px 0;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .about .panel {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1.4rem;
+      box-shadow: var(--shadow);
+    }
+
+    .about p {
+      color: var(--muted);
+      line-height: 1.8;
+      margin: 0;
+    }
+
+    footer {
+      padding: 0 0 3rem;
+    }
+
+    .footer-box {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.2rem;
+      color: #b4bddc;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .book,
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .card { grid-column: span 12; }
+      .hero { padding-top: 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#inicio">Luis <span>Mandel</span></a>
+      <nav class="menu">
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#libro">Libro</a>
+        <a href="#trayectoria">Trayectoria</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero" id="inicio">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Informática, escritura e identidad</div>
+        <h1>Luis Mandel</h1>
+        <p class="lead">
+          Doctor en Informática y escritor argentino. Durante años trabajé en desarrollo de software,
+          investigación interdisciplinaria y vida académica; en paralelo, seguí escribiendo relatos sobre
+          memoria, experiencia personal y los cruces entre lo íntimo y lo colectivo.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#libro">Ver el libro</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/dr-luis-mandel-3369651/" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+
+      <aside class="hero-card">
+        <p class="mini">
+          Nací en San Fernando, Argentina. Mi recorrido profesional me llevó por universidades y proyectos
+          en Europa, Australia y Brasil. Hoy este sitio reúne esas dos líneas que me atraviesan: la técnica
+          y la narrativa.
+        </p>
+        <div class="pill-list">
+          <span class="pill">Software</span>
+          <span class="pill">Investigación</span>
+          <span class="pill">Escritura</span>
+          <span class="pill">Memoria</span>
+          <span class="pill">Narrativa</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="sobre-mi">
+      <div class="section-title">Perfil</div>
+      <h2>Una trayectoria entre la informática y la literatura</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Formación y trabajo</h3>
+          <p>
+            Mi carrera se desarrolló en torno al desarrollo de software y la investigación interdisciplinaria,
+            con experiencia en el ámbito universitario y en equipos internacionales. Me interesa especialmente
+            el punto donde la estructura, el lenguaje y la imaginación se cruzan.
+          </p>
+        </article>
+        <article class="card">
+          <h3>Escritura</h3>
+          <p>
+            Escribo relatos que exploran la identidad, la memoria, el orgullo, la culpa y las ficciones que
+            nos contamos para vivir. Me atraen las historias en las que lo personal revela algo compartido.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="libro">
+      <div class="section-title">Libro</div>
+      <h2>Historia de una falsificación</h2>
+      <div class="book">
+        <div class="book-cover" aria-label="Portada estilizada del libro">
+          <div>
+            <div class="title">Historia de una<br>falsificación</div>
+            <div class="subtitle">Luis Mandel</div>
+          </div>
+        </div>
+        <div>
+          <p style="color: var(--muted); line-height: 1.8; margin-top: 0;">
+            Mi primer libro de cuentos publicado por Editorial Orsai. Reúne relatos que indagan en la identidad,
+            la memoria y esas versiones de nosotros mismos que inventamos para seguir adelante.
+          </p>
+          <div class="book-meta">
+            <span>Editorial Orsai</span>
+            <span>Colección Punto Cero</span>
+            <span>Abril 2026</span>
+            <span>156 páginas</span>
+          </div>
+          <div class="quote">
+            “Cada cuento parece preguntarse cuánto de lo que recordamos es verdad y cuánto es una versión que
+            inventamos para poder seguir adelante.”
+          </div>
+          <div class="cta" style="margin-top: 1.2rem;">
+            <a class="btn primary" href="https://editorial.orsai.org/libros/historia-de-una-falsificacion/" target="_blank" rel="noreferrer">Ver el libro</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trayectoria">
+      <div class="section-title">Trayectoria</div>
+      <h2>Dos lenguajes, una misma búsqueda</h2>
+      <div class="about">
+        <div class="panel">
+          <p>
+            La informática me dio método, precisión y trabajo colectivo. La escritura me devolvió la escucha,
+            la duda y la posibilidad de mirar hacia adentro. En vez de vivir esas dos dimensiones como opuestas,
+            hoy las entiendo como parte de una misma búsqueda: cómo dar forma a una experiencia y convertirla en sentido.
+          </p>
+        </div>
+        <div class="panel">
+          <p>
+            Este sitio es una puerta de entrada a ese recorrido. Un espacio breve y personal para reunir mi perfil
+            profesional, mis proyectos y mi trabajo literario, sin separar en compartimentos lo que en la vida real
+            siempre estuvo mezclado.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacto">
+    <div class="wrap footer-box">
+      <div>© <span id="year"></span> Luis Mandel</div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="https://www.linkedin.com/in/dr-luis-mandel-3369651/" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a href="https://editorial.orsai.org/libros/historia-de-una-falsificacion/" target="_blank" rel="noreferrer">Libro</a>
+        <a href="mailto:contacto@mandel.pro">contacto@mandel.pro</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
 </html>
